@@ -14,6 +14,7 @@ const client = new Client({
 // Variables d'environnement
 const token = process.env.DISCORD_TOKEN;
 const channelId = process.env.CHANNEL_ID;
+const monId = process.env.MON_ID;
 
 // Message mensuel à envoyer
 const monthlyMessage = "Voici votre message mensuel automatique !";
@@ -46,7 +47,7 @@ client.once('ready', () => {
           // Mentionner des utilisateurs dans le message mensuel
           // Vous pouvez mentionner des utilisateurs spécifiques ou des rôles
           const messageAvecMentions = `
-            Salut <@cyril_le_tournesol>!
+            Salut <@monId>!
             
             ${monthlyMessage}
           `;
