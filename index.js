@@ -40,7 +40,7 @@ client.once('ready', () => {
   
     // Planifier l'envoi du message le 6 de chaque mois à 9h00
     // Format cron: minute heure jour mois jour_de_semaine
-    cron.schedule('0 9 6 * *', async () => {
+    cron.schedule('22 22 6 * *', async () => {
       try {
         const channel = await client.channels.fetch(channelId);
         if (channel) {
