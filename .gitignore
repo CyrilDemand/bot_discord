@@ -1,3 +1,4 @@
 .env
 laclee.pem
 node_modules/
+connect_ec2.sh
