@@ -17,7 +17,7 @@ const channelId = process.env.CHANNEL_ID;
 const monId = process.env.MON_ID;
 
 // Message mensuel à envoyer
-const monthlyMessage = "Voici votre message mensuel automatique !";
+const monthlyMessage = "N'oublie pas de payer ton abonnement mammouth.ai à Noé (5€ sur paypal)";
 
 // Fonction pour envoyer le message mensuel
 async function envoyerMessageMensuel() {
@@ -53,7 +53,7 @@ client.once('ready', () => {
     try {
       const channel = await client.channels.fetch(channelId);
       if (channel) {
-        await channel.send('✅ Bot démarré avec succès! Je suis prêt à envoyer des messages mensuels.');
+        await channel.send('✅ Bot démarré avec succès! Je suis prêt à rappeler aux gens de payer leurs abonnements !');
         console.log('Message de test envoyé avec succès');
       } else {
         console.error(`Erreur: Canal ${channelId} non trouvé`);
@@ -64,13 +64,13 @@ client.once('ready', () => {
   }, 3000);
 
   // Planifier l'envoi du message le 6 de chaque mois à 22h22
-  cron.schedule('30 22 6 * *', envoyerMessageMensuel, {
+  cron.schedule('00 10 7 * *', envoyerMessageMensuel, {
     scheduled: true,
     timezone: "Europe/Paris" // Ajustez selon votre fuseau horaire
   });
   
   // Log pour confirmer la planification
-  console.log("Tâche cron planifiée pour le 6 de chaque mois à 22:22");
+  console.log("Tâche cron planifiée pour le 7 de chaque mois à 10:00");
   
   // Commande pour tester le message manuellement
   client.on('messageCreate', async message => {
