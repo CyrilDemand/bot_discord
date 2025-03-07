@@ -21,6 +21,7 @@ const nikosChannelId = process.env.NIKOS_CHANNEL_ID;
 
 // Message mensuel à envoyer
 const monthlyMessage = "N'oublie pas de payer ton abonnement mammouth.ai à Noé (5€ sur paypal)";
+let derniereImageNikos = ''
 
 // Variable pour suivre la dernière image utilisée pour éviter les répétitions
 // Fonction pour envoyer le message mensuel
@@ -122,7 +123,7 @@ client.once('ready', () => {
   });
   
   // Planifier l'envoi de l'image de Nikos tous les jours à 12h00
-  cron.schedule('0 14 * * *', envoyerImageNikosAleatoire, {
+  cron.schedule('5 14 * * *', envoyerImageNikosAleatoire, {
     scheduled: true,
     timezone: "Europe/Paris"
   });
