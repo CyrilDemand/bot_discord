@@ -77,7 +77,7 @@ async function envoyerImageNikosAleatoire() {
     derniereImageNikos = imageAleatoire;
 
 
-     const phrasesDisponible = nikosImages.filter(img => img !== dernierePhraseNikos);
+     const phrasesDisponible = nikosPhrases.filter(phrase => phrase !== dernierePhraseNikos);
     
      const phraseAleatoire = phrasesDisponible.length > 0
        ? phrasesDisponible[Math.floor(Math.random() * phrasesDisponible.length)]
@@ -135,7 +135,7 @@ client.once('ready', () => {
   });
   
   // Planifier l'envoi de l'image de Nikos tous les jours à 12h00
-  cron.schedule('15 14 * * *', envoyerImageNikosAleatoire, {
+  cron.schedule('18 14 * * *', envoyerImageNikosAleatoire, {
     scheduled: true,
     timezone: "Europe/Paris"
   });
