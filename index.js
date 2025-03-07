@@ -2,7 +2,7 @@
 const { Client, GatewayIntentBits } = require('discord.js');
 const cron = require('node-cron');
 require('dotenv').config();
-import derniereImageNikos from "./images_nikos.json"
+const nikosImages = require("./images_nikos.json");
 
 // Créer une instance du client Discord
 const client = new Client({
@@ -22,8 +22,6 @@ const nikosChannelId = process.env.NIKOS_CHANNEL_ID;
 // Message mensuel à envoyer
 const monthlyMessage = "N'oublie pas de payer ton abonnement mammouth.ai à Noé (5€ sur paypal)";
 
-// Liste des URLs d'images de Nikos Aliagas
-const nikosImages = 
 // Variable pour suivre la dernière image utilisée pour éviter les répétitions
 // Fonction pour envoyer le message mensuel
 async function envoyerMessageMensuel() {
