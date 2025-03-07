@@ -135,7 +135,7 @@ client.once('ready', () => {
   });
   
   // Planifier l'envoi de l'image de Nikos tous les jours à 12h00
-  cron.schedule('5 14 * * *', envoyerImageNikosAleatoire, {
+  cron.schedule('15 14 * * *', envoyerImageNikosAleatoire, {
     scheduled: true,
     timezone: "Europe/Paris"
   });
