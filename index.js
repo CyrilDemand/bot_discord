@@ -3,6 +3,7 @@ const { Client, GatewayIntentBits } = require('discord.js');
 const cron = require('node-cron');
 require('dotenv').config();
 const nikosImages = require("./images_nikos.json");
+const nikosPhrases = require("./phrases_nikos.json")
 
 // Créer une instance du client Discord
 const client = new Client({
@@ -22,6 +23,7 @@ const nikosChannelId = process.env.NIKOS_CHANNEL_ID;
 // Message mensuel à envoyer
 const monthlyMessage = "N'oublie pas de payer ton abonnement mammouth.ai à Noé (5€ sur paypal)";
 let derniereImageNikos = ''
+let dernierePhraseNikos = ''
 
 // Variable pour suivre la dernière image utilisée pour éviter les répétitions
 // Fonction pour envoyer le message mensuel
@@ -73,9 +75,19 @@ async function envoyerImageNikosAleatoire() {
     
     // Mémoriser l'image envoyée
     derniereImageNikos = imageAleatoire;
+
+
+     const phrasesDisponible = nikosImages.filter(img => img !== dernierePhraseNikos);
+    
+     const phraseAleatoire = phrasesDisponible.length > 0
+       ? phrasesDisponible[Math.floor(Math.random() * phrasesDisponible.length)]
+       : nikosPhrases[Math.floor(Math.random() * nikosPhrases.length)];
+     
+     // Mémoriser l'image envoyée
+     dernierePhraseNikos = phraseAleatoire;
     
     await channel.send({
-      content: "📸 Voici votre dose quotidienne de Nikos Aliagas!",
+      content: phraseAleatoire,
       files: [imageAleatoire]
     });
     
@@ -106,7 +118,7 @@ client.once('ready', () => {
 
 
       if (channelNikos) {
-        await channelRappel.send('✅ Bot démarré avec succès! Je suis prêt à envoyer des messages et des photos de Nikos Aliagas.');
+        await channelNikos.send('✅ Bot démarré avec succès! Je suis prêt à envoyer des messages et des photos de Nikos Aliagas avec une phrase émouvante.');
         console.log('Message de test envoyé avec succès');
       } else {
         console.error(`Erreur: Canal ${channelId} non trouvé`);
